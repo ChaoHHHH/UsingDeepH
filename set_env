@@ -1,0 +1,24 @@
+conda create -n deeph_e python=3.9
+conda activate deeph_e
+#先装pytorch
+pip install torch==1.12.1+cu116 torchvision==0.13.1+cu116 torchaudio==0.12.1 --extra-index-url https://download.pytorch.org/whl/cu116
+#按照torch 选择 pyg 分别安装各个包 教程（https://zhuanlan.zhihu.com/p/659091190）
+pip install https://data.pyg.org/whl/torch-1.12.0%2Bcu116/pyg_lib-0.1.0%2Bpt112cu116-cp39-cp39-linux_x86_64.whl
+pip install https://data.pyg.org/whl/torch-1.12.0%2Bcu116/torch_cluster-1.6.0%2Bpt112cu116-cp39-cp39-linux_x86_64.whl
+pip install https://data.pyg.org/whl/torch-1.12.0%2Bcu116/torch_scatter-2.1.0%2Bpt112cu116-cp39-cp39-linux_x86_64.whl
+pip install https://data.pyg.org/whl/torch-1.12.0%2Bcu116/torch_sparse-0.6.15%2Bpt112cu116-cp39-cp39-linux_x86_64.whl
+pip install https://data.pyg.org/whl/torch-1.12.0%2Bcu116/torch_spline_conv-1.2.1%2Bpt112cu116-cp39-cp39-linux_x86_64.whl
+pip install torch_geometric==1.7.2
+#至此应该可以import torch import torch_geometric 无报错
+#用deeph setup.py安装其余包
+（deeph-pack中）pip install .
+#测试
+输入 deeph-train 报错 GLIBC_2.27 not found
+#解决（逃避）办法 教程（https://blog.csdn.net/Chemist_Dong/article/details/127060611）
+pip unstall torch-spline-conv
+#再次输入 deeph-train 报错 numpy版本过高，降至1.xx.x
+pip install numpy==1.25.0
+#再次输入 deeph-train 无环境错误信息
+#找个测试 输入 deeph-train --config ini 无报错，可以使用cpu训练
+#将ini中的device改为cuda:0，再次运行，可以使用gpu训练
+#安装julia，直接使用conda安装
