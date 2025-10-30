@@ -1,3 +1,4 @@
+```
 conda create -n deeph python=3.9
 conda activate deeph
 先升级gcc和gxx
@@ -15,3 +16,4 @@ pip uninstall torch-spline-conv
 pip uninstall torch-sparse
 pip uninstall pyg-lib
 deeph-train
+```
